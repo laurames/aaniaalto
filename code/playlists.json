@@ -1,0 +1,298 @@
+[
+  {
+    "playlists": {
+      "href": "https://api.spotify.com/v1/search?query=jazz&type=playlist&offset=20&limit=1",
+      "items": [
+        {
+          "collaborative": false,
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/caspersmits/playlist/6AhB5dWg896USmOJwuZpEA"
+          },
+          "href": "https://api.spotify.com/v1/users/caspersmits/playlists/6AhB5dWg896USmOJwuZpEA",
+          "id": "6AhB5dWg896USmOJwuZpEA",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://mosaic.scdn.co/640/e82cf40f2cdb4ba4680c9202c8b8c7d9602df9b7a0dd582ed2737d5d05028d9c678bb6cacd0846a1b7987df185fc5dc78fb032291336205cf79d52ff741aff6eb0eafdf9a208d068efcf9d7a96df9fff",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://mosaic.scdn.co/300/e82cf40f2cdb4ba4680c9202c8b8c7d9602df9b7a0dd582ed2737d5d05028d9c678bb6cacd0846a1b7987df185fc5dc78fb032291336205cf79d52ff741aff6eb0eafdf9a208d068efcf9d7a96df9fff",
+              "width": 300
+            },
+            {
+              "height": 60,
+              "url": "https://mosaic.scdn.co/60/e82cf40f2cdb4ba4680c9202c8b8c7d9602df9b7a0dd582ed2737d5d05028d9c678bb6cacd0846a1b7987df185fc5dc78fb032291336205cf79d52ff741aff6eb0eafdf9a208d068efcf9d7a96df9fff",
+              "width": 60
+            }
+          ],
+          "name": "Smooth Jazz",
+          "owner": {
+            "display_name": null,
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/caspersmits"
+            },
+            "href": "https://api.spotify.com/v1/users/caspersmits",
+            "id": "caspersmits",
+            "type": "user",
+            "uri": "spotify:user:caspersmits"
+          },
+          "public": null,
+          "snapshot_id": "ay/hThNOYwmHR+JW/Hctaj9sAwZ1Wfr9ZU1uTwicFH8MOlVKV/wTS5+uYDgcORnD",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/users/caspersmits/playlists/6AhB5dWg896USmOJwuZpEA/tracks",
+            "total": 300
+          },
+          "type": "playlist",
+          "uri": "spotify:user:caspersmits:playlist:6AhB5dWg896USmOJwuZpEA"
+        }
+      ],
+      "limit": 1,
+      "next": "https://api.spotify.com/v1/search?query=jazz&type=playlist&offset=21&limit=1",
+      "offset": 20,
+      "previous": "https://api.spotify.com/v1/search?query=jazz&type=playlist&offset=19&limit=1",
+      "total": 181753
+    }
+  },
+  {
+    "playlists": {
+      "href": "https://api.spotify.com/v1/search?query=blues&type=playlist&offset=20&limit=1",
+      "items": [
+        {
+          "collaborative": false,
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DXaOY0OtmgxB8"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DXaOY0OtmgxB8",
+          "id": "37i9dQZF1DXaOY0OtmgxB8",
+          "images": [
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/418f06633ba34eada39a49f1ccda1848569509fb",
+              "width": 300
+            }
+          ],
+          "name": "Big Daddy's Booze & Blues",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "public": null,
+          "snapshot_id": "f1NBVPW7wJem3QLruWgJ8OoWipRNqLhh5oPtlgCogqNS1+EGQU0ELyslpzzZS9P1yRMA76K2D10=",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DXaOY0OtmgxB8/tracks",
+            "total": 33
+          },
+          "type": "playlist",
+          "uri": "spotify:user:spotify:playlist:37i9dQZF1DXaOY0OtmgxB8"
+        }
+      ],
+      "limit": 1,
+      "next": "https://api.spotify.com/v1/search?query=blues&type=playlist&offset=21&limit=1",
+      "offset": 20,
+      "previous": "https://api.spotify.com/v1/search?query=blues&type=playlist&offset=19&limit=1",
+      "total": 149765
+    }
+  },
+  {
+    "playlists": {
+      "href": "https://api.spotify.com/v1/search?query=80%27s&type=playlist&offset=20&limit=1",
+      "items": [
+        {
+          "collaborative": false,
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/dowen/playlist/3RmQngCZV2qBNXEzMAUKTo"
+          },
+          "href": "https://api.spotify.com/v1/users/dowen/playlists/3RmQngCZV2qBNXEzMAUKTo",
+          "id": "3RmQngCZV2qBNXEzMAUKTo",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://mosaic.scdn.co/640/18cb6dbbf91c6593b3270afecbd99068a755357dba85cb6680d54f627113f25545877de7ba6fa9df14a35179195a488594e9bf983408dcc90910affd8ae7fe5096842b06dce51eebb383057b73c971d4",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://mosaic.scdn.co/300/18cb6dbbf91c6593b3270afecbd99068a755357dba85cb6680d54f627113f25545877de7ba6fa9df14a35179195a488594e9bf983408dcc90910affd8ae7fe5096842b06dce51eebb383057b73c971d4",
+              "width": 300
+            },
+            {
+              "height": 60,
+              "url": "https://mosaic.scdn.co/60/18cb6dbbf91c6593b3270afecbd99068a755357dba85cb6680d54f627113f25545877de7ba6fa9df14a35179195a488594e9bf983408dcc90910affd8ae7fe5096842b06dce51eebb383057b73c971d4",
+              "width": 60
+            }
+          ],
+          "name": "Classics, 60's, 70's, 80's, 90's, 00's",
+          "owner": {
+            "display_name": "Ric C. Dowen",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/dowen"
+            },
+            "href": "https://api.spotify.com/v1/users/dowen",
+            "id": "dowen",
+            "type": "user",
+            "uri": "spotify:user:dowen"
+          },
+          "public": null,
+          "snapshot_id": "WonbjYNy4JEUJZjkn2ReNTtlUAsfFXTe4kULfQHhkmcCu0PnOIe9oqZjqiurUqVo",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/users/dowen/playlists/3RmQngCZV2qBNXEzMAUKTo/tracks",
+            "total": 487
+          },
+          "type": "playlist",
+          "uri": "spotify:user:dowen:playlist:3RmQngCZV2qBNXEzMAUKTo"
+        }
+      ],
+      "limit": 1,
+      "next": "https://api.spotify.com/v1/search?query=80%27s&type=playlist&offset=21&limit=1",
+      "offset": 20,
+      "previous": "https://api.spotify.com/v1/search?query=80%27s&type=playlist&offset=19&limit=1",
+      "total": 161641
+    }
+  },
+  {
+    "playlists": {
+      "href": "https://api.spotify.com/v1/search?query=pop&type=playlist&offset=20&limit=1",
+      "items": [
+        {
+          "collaborative": false,
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DWYCIYGXn56uz"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWYCIYGXn56uz",
+          "id": "37i9dQZF1DWYCIYGXn56uz",
+          "images": [
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ef4549b66f12e78fb1f576e4bcf65a0dacbe7aa8",
+              "width": 300
+            }
+          ],
+          "name": "Hip Pop!",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "public": null,
+          "snapshot_id": "F4p7vVw66Uw+qQjRDHkPQE8OeDe1OJW4G8jZUyZD4Ih1Yt9DslwVSE/K5+B5l891Z3RkEs0eGvw=",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWYCIYGXn56uz/tracks",
+            "total": 40
+          },
+          "type": "playlist",
+          "uri": "spotify:user:spotify:playlist:37i9dQZF1DWYCIYGXn56uz"
+        }
+      ],
+      "limit": 1,
+      "next": "https://api.spotify.com/v1/search?query=pop&type=playlist&offset=21&limit=1",
+      "offset": 20,
+      "previous": "https://api.spotify.com/v1/search?query=pop&type=playlist&offset=19&limit=1",
+      "total": 780664
+    }
+  },
+  {
+    "playlists": {
+      "href": "https://api.spotify.com/v1/search?query=country&type=playlist&offset=20&limit=1",
+      "items": [
+        {
+          "collaborative": false,
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DXbvE0SE0Cczh"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DXbvE0SE0Cczh",
+          "id": "37i9dQZF1DXbvE0SE0Cczh",
+          "images": [
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/3023e2d3d258dc14d5d180840988650cf2fb3f7e",
+              "width": 300
+            }
+          ],
+          "name": "Diner Jukebox",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "public": null,
+          "snapshot_id": "1otO+pryTW1v23VilaXjON6UZ6qCjYLa1mq+8BbqOBaLba2YsF4dw54glwqwCnAFI7D8Vb0AoT8=",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DXbvE0SE0Cczh/tracks",
+            "total": 51
+          },
+          "type": "playlist",
+          "uri": "spotify:user:spotify:playlist:37i9dQZF1DXbvE0SE0Cczh"
+        }
+      ],
+      "limit": 1,
+      "next": "https://api.spotify.com/v1/search?query=country&type=playlist&offset=21&limit=1",
+      "offset": 20,
+      "previous": "https://api.spotify.com/v1/search?query=country&type=playlist&offset=19&limit=1",
+      "total": 1070880
+    }
+  },
+  {
+    "playlists": {
+      "href": "https://api.spotify.com/v1/search?query=rock&type=playlist&offset=20&limit=1",
+      "items": [
+        {
+          "collaborative": false,
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DWZNFWEuVbQpD"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWZNFWEuVbQpD",
+          "id": "37i9dQZF1DWZNFWEuVbQpD",
+          "images": [
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/5a1a643d092dfeadef51d2bb3b81049442510260",
+              "width": 300
+            }
+          ],
+          "name": "The Rock Show",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "public": null,
+          "snapshot_id": "gTA9dIDl/kWGzINopoorqX7SncBiWWI7NtDPvRTRTfCIUG9z91oFWwRS01Dr8wKClGx1uaJibpc=",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWZNFWEuVbQpD/tracks",
+            "total": 71
+          },
+          "type": "playlist",
+          "uri": "spotify:user:spotify:playlist:37i9dQZF1DWZNFWEuVbQpD"
+        }
+      ],
+      "limit": 1,
+      "next": "https://api.spotify.com/v1/search?query=rock&type=playlist&offset=21&limit=1",
+      "offset": 20,
+      "previous": "https://api.spotify.com/v1/search?query=rock&type=playlist&offset=19&limit=1",
+      "total": 1660993
+    }
+  }
+]
