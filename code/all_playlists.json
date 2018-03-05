@@ -1,0 +1,34 @@
+{
+  "playlists": [
+    {
+      "name": "Jazz Vibes",
+      "id": "37i9dQZF1DX0SM0LYsmbMT",
+      "owner_id": "spotify"
+    },
+    {
+      "name": "Love Pop",
+      "id": "37i9dQZF1DX50QitC6Oqtn",
+      "owner_id": "spotify"
+    },
+    {
+      "name": "Hot Country",
+      "id": "37i9dQZF1DX1lVhptIYRda",
+      "owner_id": "spotify"
+    },
+    {
+      "name": "Rock This",
+      "id": "37i9dQZF1DXcF6B6QPhFDv",
+      "owner_id": "spotify"
+    },
+    {
+      "name": "80's Rock mix",
+      "id": "0DzTbbt5l4w0pQ7JR0Ie38",
+      "owner_id": "1296791898"
+    },
+    {
+      "name": "Blues Origins",
+      "id": "37i9dQZF1DXbkKnGZHv1kf",
+      "owner_id": "spotify"
+    }
+  ]
+}

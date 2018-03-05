@@ -38,7 +38,7 @@ spotifyApi.clientCredentialsGrant()
 
     //This function takes the username (spotify) and playlist ID (end of the URI)
     //CHANGE THIS TO CHANGE THE OUTPUT
-    spotifyApi.getPlaylist('122958629','2t8IYEzOsApu5ljWICjuKw')
+    spotifyApi.getPlaylist('122958629','2t8IYEzOsApu5ljWICjuKw') //first: user id, second: playlist id
   .then(function(data) {
     //targetPlaylist is our playlist
     targetPlaylist = data.body['tracks']['items'];

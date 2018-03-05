@@ -1,3 +1,7 @@
+/**********************
+      SEARCH FOR PLAYLISTS
+***********************/
+
 //require everything inside node_modules folder:
 var SpotifyWebApi = require("../");
 var async = require('../node_modules/async');
@@ -10,55 +14,51 @@ var spotifyApi = new SpotifyWebApi({
 });
 
 //global variables
-//creating a file
-var trackinfo = [];
 var fs = require('fs');
+var all_playlists = {
+  playlists: []
+};
 
 // Retrieve an access token
 spotifyApi.clientCredentialsGrant()
   .then(function(data) {
     // Set the access token on the API object so that it's used in all future requests
     spotifyApi.setAccessToken(data.body['access_token']);
-    var search_terms = ["jazz", "blues", "pop", "rock", "country", "80's"];
-    var counter = 1;
-    // search for playlists
-    async.forEach(search_terms, function (search_terms_item, callback){
-      spotifyApi.searchPlaylists(search_terms_item, { limit: 1, offset: 20 }, function(err, data) {
+
+    //search terms
+    var playlist_search_terms = ["jazz", "blues", "pop", "rock", "country", "80's"];
+
+    // search for playlists with search_terms and place into playlist_objects:
+    async.forEach(playlist_search_terms, function (search_term, callback){
+      spotifyApi.searchPlaylists(search_term, { limit: 1 }, function(err, data) {
         if (err) {
           console.error('searchPlaylists error: ', err.message);
           return;
         }
-        //console.log('item is: ' + search_terms_item); //correct we get all items
-        //console.log('Found playlists are', JSON.stringify(data.body));
-        //push the data into array and making it valid JSON:
-        if(counter === search_terms.length){
-          trackinfo.push(JSON.stringify(data.body)+']');
-        }else if (counter === 1) {
-          trackinfo.push('['+JSON.stringify(data.body));
-        }else trackinfo.push(JSON.stringify(data.body));
-        counter++;
-        // tell async that that particular element of the iterator is done
+        //map the values into new JSON object called playlists
+        data.body.playlists.items.map(function(item) {
+          all_playlists.playlists.push({
+            "name" : item.name,
+            "id"  : item.id,
+            "owner_id" : item.owner.id
+          });
+        });
         callback();
       });
     }, function(err) {
-      // All tasks are done now
-      counter = 1;
-      console.log('HAVE: '+ trackinfo);
-      fs.writeFile("playlists.json", trackinfo);
+      // if any of the file processing produced an error, err would equal that error
+      if(err) {
+        // One of the iterations produced an error.
+        console.log('error = '+err.message);
+      } else {
+        //console.log('all_playlists = ' + JSON.stringify(all_playlists));
+        //console.log("playlists saved to playlists");
+        fs.writeFile("all_playlists.json", JSON.stringify(all_playlists), (err) => {
+          if (err) throw err;
+          console.log('Playlists have been saved!');
+        });
+      }
     });
-    /* This did not work because of async calls in node.js
-    for (var i = 0; i < search_terms.length; i++) {
-      spotifyApi.searchPlaylists(search_terms[i], { limit: 1, offset: 20 }, function(err, data) {
-        if (err) {
-          console.error('Something went wrong with getting playlist', err.message);
-          return;
-        }
-        //console.log('Found playlists are', JSON.stringify(data.body));
-        //push the data into array:
-        trackinfo.push(JSON.stringify(data.body));
-      });
-    }
-  */
   }).catch(function(err) {
     console.log('clientCredentialsGrant error: ', err.message);
   });
