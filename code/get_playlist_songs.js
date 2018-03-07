@@ -13,7 +13,7 @@ var spotifyApi = new SpotifyWebApi({
 var fs = require('fs');
 var song_ids = {
   songs: []
-}
+};
 
 // Retrieve an access token
 spotifyApi.clientCredentialsGrant()
@@ -60,7 +60,7 @@ spotifyApi.clientCredentialsGrant()
                   console.log("search iterations passed = "+count);
                   fs.writeFile("song_ids.json", JSON.stringify(song_ids), (err) => {
                     if (err) throw err;
-                    console.log('Playlists have been saved!');
+                    console.log('Playlist song ids have been saved!');
                   });
               }//function err ends
           );//whilst ends

@@ -62,7 +62,7 @@ spotifyApi.clientCredentialsGrant()
             console.log("iterations of fetching audio fetures = "+count);
             fs.writeFile("song_data.json", JSON.stringify(song_data), (err) => {
               if (err) throw err;
-              console.log('Playlists have been saved!');
+              console.log('Playlists songs track audio features have been saved!');
             });
         }//err end
     );//whilst end
