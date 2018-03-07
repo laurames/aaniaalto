@@ -14,7 +14,7 @@ var fs = require('fs');
 var ids = [];
 var all_song_ids = function(){
   var songs = require('./all_songs.json');
-  for(i=0; i<songs.songs.length; i++){
+  for(i=0; i<100; i++){
     ids.push(songs.songs[i].id);
     console.log(ids);
   }
@@ -29,14 +29,9 @@ spotifyApi.clientCredentialsGrant()
     // Set the access token on the API object so that it's used in all future requests
     spotifyApi.setAccessToken(data.body['access_token']);
 
-    spotifyApi.getAudioFeaturesForTracks(ids, function(err, data) {
-      if(err){
-        console.log("getAudioFeaturesForTracks error = "+err.message);
-        return;
-      }
-      console.log("song data: "+ JSON.stringify(data.body));
+    spotifyApi.getAudioFeaturesForTracks(ids).then(function(data){
       data.body['audio_features'].map(function(item){
-        all_songs.songs.push({
+        all_song_data.songs.push({
           "danceability"     : item.danceability,
           "energy"           : item.energy,
           "speechiness"      : item.speechiness,
@@ -46,7 +41,17 @@ spotifyApi.clientCredentialsGrant()
           "tempo"            : item.tempo
         });
       });
+    }, function(err) {
+      if(err){
+        console.log("getAudioFeaturesForTracks error = "+err.message);
+      }else{
+        fs.writeFile("all_playlists.json", JSON.stringify(all_playlists), (err) => {
+          if (err) throw err;
+          console.log('Playlists have been saved!');
+        });
+      }
     });
+
   }).catch(function(err) {
     console.log('clientCredentialsGrant error: ', err.message);
   });
