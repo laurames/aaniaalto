@@ -1,0 +1,51 @@
+/*
+  AnalogReadSerial
+
+  Reads an analog input on pin 0, prints the result to the Serial Monitor.
+  Graphical representation is available using Serial Plotter (Tools > Serial Plotter menu).
+  Attach the center pin of a potentiometer to pin A0, and the outside pins to +5V and ground.
+
+  This example code is in the public domain.
+
+  http://www.arduino.cc/en/Tutorial/AnalogReadSerial
+*/
+
+int currentMood, lastMood, sendMood;
+int currentIntensity, lastIntensity, sendIntensity;
+int threshold = 25;
+
+// the setup routine runs once when you press reset:
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+
+  currentMood = analogRead(A3);
+  currentIntensity = analogRead(A0);
+
+if(abs(currentMood - lastMood) > threshold){
+  sendMood = map(currentMood, 0, 1024, 0, 3);
+  sendStuff();
+  lastMood = currentMood;
+  
+}
+
+
+if(abs(currentIntensity - lastIntensity) > threshold){
+  sendIntensity = map(currentIntensity, 0, 1024, 0, 4);
+  sendStuff();
+  lastIntensity = currentIntensity;
+  
+}
+}
+
+
+void sendStuff(){
+  Serial.print(sendMood);
+  Serial.print(",");
+  Serial.println(sendIntensity);
+}
+

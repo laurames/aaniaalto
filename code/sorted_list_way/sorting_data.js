@@ -42,4 +42,4 @@ function write_files(){
   }
 }
 
-write_files("danceability", "energy", "speechiness", "acousticness", "instrumentalness", "valence", "tempo");
+write_files("danceability", "energy", "speechiness", "acousticness", "valence");
