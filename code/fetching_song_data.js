@@ -41,13 +41,11 @@ spotifyApi.clientCredentialsGrant()
               data.body['audio_features'].map(function(item){
                 song_data.songs.push({
                   "id"               : item.id,
-                  "danceability"     : item.danceability,
-                  "energy"           : item.energy,
-                  "speechiness"      : item.speechiness,
                   "acousticness"     : item.acousticness,
-                  "instrumentalness" : item.instrumentalness,
+                  "energy"           : item.energy,
                   "valence"          : item.valence,
-                  "tempo"            : item.tempo
+                  "danceability"     : item.danceability,
+                  "speechiness"      : item.speechiness
                 });
               });
               start += 100;
