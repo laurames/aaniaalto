@@ -1,14 +1,114 @@
 {
   "songs": [
     {
-      "id": "5NFV5HquTXQXR3q384YMhc",
-      "danceability": 0.404,
-      "energy": 0.398,
-      "speechiness": 0.0289,
-      "acousticness": 0.205,
-      "instrumentalness": 0.0125,
-      "valence": 0.251,
-      "tempo": 75.867
+      "id": "2XW4DbS6NddZxRPm5rMCeY",
+      "danceability": 0.753,
+      "energy": 0.454,
+      "speechiness": 0.0963,
+      "acousticness": 0.0244,
+      "instrumentalness": 0.0000562,
+      "valence": 0.344,
+      "tempo": 77.17
+    },
+    {
+      "id": "4qKcDkK6siZ7Jp1Jb4m0aL",
+      "danceability": 0.922,
+      "energy": 0.581,
+      "speechiness": 0.27,
+      "acousticness": 0.00104,
+      "instrumentalness": 0.0000586,
+      "valence": 0.595,
+      "tempo": 140.022
+    },
+    {
+      "id": "0wbnC9AUenxp613TYaJsGK",
+      "danceability": 0.936,
+      "energy": 0.588,
+      "speechiness": 0.136,
+      "acousticness": 0.0146,
+      "instrumentalness": 0,
+      "valence": 0.238,
+      "tempo": 124.987
+    },
+    {
+      "id": "65NwOZqoXny4JxqAPlfxRF",
+      "danceability": 0.74,
+      "energy": 0.558,
+      "speechiness": 0.102,
+      "acousticness": 0.566,
+      "instrumentalness": 0,
+      "valence": 0.421,
+      "tempo": 140.057
+    },
+    {
+      "id": "51rXHuKN8Loc4sUlKPODgH",
+      "danceability": 0.563,
+      "energy": 0.717,
+      "speechiness": 0.337,
+      "acousticness": 0.000874,
+      "instrumentalness": 0,
+      "valence": 0.427,
+      "tempo": 82.064
+    },
+    {
+      "id": "0cZuS1VcwpKi5BxP4ESDaj",
+      "danceability": 0.423,
+      "energy": 0.158,
+      "speechiness": 0.0346,
+      "acousticness": 0.717,
+      "instrumentalness": 0.0075,
+      "valence": 0.185,
+      "tempo": 106.974
+    },
+    {
+      "id": "082zyi189u5lRp2gPkE8Lb",
+      "danceability": 0.45,
+      "energy": 0.0437,
+      "speechiness": 0.0374,
+      "acousticness": 0.971,
+      "instrumentalness": 0.88,
+      "valence": 0.0988,
+      "tempo": 63.938
+    },
+    {
+      "id": "5qRJZGqWHMpKRxk8rmAVto",
+      "danceability": 0.421,
+      "energy": 0.0967,
+      "speechiness": 0.0509,
+      "acousticness": 0.91,
+      "instrumentalness": 0.415,
+      "valence": 0.183,
+      "tempo": 77.401
+    },
+    {
+      "id": "4bBIADw4urJPkcx0YOfEIo",
+      "danceability": 0.331,
+      "energy": 0.0861,
+      "speechiness": 0.0354,
+      "acousticness": 0.918,
+      "instrumentalness": 0.902,
+      "valence": 0.152,
+      "tempo": 107.436
+    },
+    {
+      "id": "4ymHy4hzJ09WxvvT7p0Azy",
+      "danceability": 0.575,
+      "energy": 0.0935,
+      "speechiness": 0.0858,
+      "acousticness": 0.978,
+      "instrumentalness": 0.452,
+      "valence": 0.301,
+      "tempo": 65.23
+    },
+    {
+      "id": "24M4rafgMYq9b49CEYPpm9",
+      "danceability": 0.461,
+      "energy": 0.0389,
+      "speechiness": 0.0399,
+      "acousticness": 0.899,
+      "instrumentalness": 0.015,
+      "valence": 0.125,
+      "tempo": 109.374
     }
   ]
 }

@@ -53,41 +53,13 @@ function checkInModel(audio_feature,count){
   for(y=0; y<models.length; y++){
     var index = song_placement.indexOf(y);
 //    console.log("audio feature: "+audio_feature+", y: "+y+", count: "+count+", value is: "+models[y][count]);
-    //take into account acousticness, energy & valence for party songs
-    if(count < 3 && y < 4){
+    //at least check accusticness to build array
+    if(count === 0){
       //model[0] = first element in model, count = what audio feature from the 5
       if(audio_feature > models[y][count][0]
       && audio_feature < models[y][count][1]){
-        if(index === -1){
+        if(index === -1){ //and it is not in the array already
           song_placement.push(y); //push the number of playlist
-        }
-      }else{
-        if(index === -1){
-          song_placement.splice(index, 1); //take the playlist out
-        }
-      }
-    } //take into account acousticness and valence for middle songs
-    else if(count===0 || count===2 && (y > 3 && y < 8)){
-      if(audio_feature > models[y][count][0]
-      && audio_feature < models[y][count][1]){
-        if(index === -1){
-          song_placement.push(y); //push the number of playlist
-        }
-      }else{
-        if(index === -1){
-          song_placement.splice(index, 1); //take the playlist out
-        }
-      }
-    } //take into account acousticness, energy & valence for chill songs
-    else if(count<3 && y > 7){
-      if(audio_feature > models[y][count][0]
-      && audio_feature < models[y][count][1]){
-        if(index === -1){
-          song_placement.push(y); //push the number of playlist
-        }
-      }else{
-        if(index === -1){
-          song_placement.splice(index, 1); //take the playlist out
         }
       }
     }else{ //overwise just take out the ones it does not fit
