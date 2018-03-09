@@ -1,6 +1,6 @@
 var fs = require('fs');
 //all song data
-var data = require('./testing_songs.json'), song_data = data.songs;
+var data = require('./song_data.json'), song_data = data.songs;
 var models = require('./model.json');
 
 //party quadrents

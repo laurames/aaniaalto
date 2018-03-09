@@ -3,10 +3,40 @@ TuneOut by
 Laura Meskanen-Kundu, Maya Pillai & Liam Turner
 */
 var SpotifyWebApi = require("../");
-var SerialPort = require('serialport');
+const request = require('request');
+const SerialPort = require('serialport');
+const data = require('./tuneOut.json');
+
+function sortData(num){
+  var song_ids = [];
+  for(i=0; i<data[num].length; i++){
+    song_ids.push("spotify:track:"+data[num][i]["id"]);
+  }
+  return song_ids;
+};
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+var party_1 = sortData(0),
+    party_2 = sortData(1),
+    party_3 = sortData(2),
+    party_4 = sortData(3),
+    middle_1 = sortData(4),
+    middle_2 = sortData(5),
+    middle_3 = sortData(6),
+    middle_4 = sortData(7),
+    chill_1 = sortData(8),
+    chill_2 = sortData(9),
+    chill_3 = sortData(10),
+    chill_4 = sortData(11);
+
+var random = { "position": getRandomInt(0,10) };
+console.log(random);
 
 //OAuth Token =
-var authorizationCode = 'AQD9I5d3gdYmVICQm353ajNQChpEDw0Sa_GtYZ2ED-mun1XH_tmaWKh-vWesYtMc2UwBE0jv3qTBpMjU5UW-x5O0u5JNA559-q7KU84DxM-rS41vnJEajMy_QfUn6rgiZ0Qd_W-uM4JyrSXWH8_TMjBNuqRBErmGrrosmGx4urGjEv-iMZq_jvMm9eIzA_UWEsQub6bMryezUVY1k2YcP-MZwQgZ2wHKwLK6AoGyUs_5396E4uwARW9pXBrm4WtRADWuXUJ3zcwqSvFffb5gOXCa28zAofQGIiElTTOv6H8175uVmKptspXkccnx6bUORrqIthThQk9aLeKSp7HuQnCrrKrdUg2OlTt0eK8U9n3nsZmzW_Q';
+var authorizationCode = 'AQDrdVw_qZGL8T1RriOju8nL6RuCP4j4UXN-jj1mF0mCvGV-HFXyw2_oc3aSM3F2y4fnYP7adFATjls1MIuvBkAptB1QleDgPhxykqj2_8pGgqenKr4lzTFtIM3appOY8Qu_IlTMjqtPYmHMniHIDuQH3LCqXVZw8xf1n5NMVGKoOkHq4OkpSKzL6f8ky1QfZcjNbnTxCXFIlSKtUxcVdVyDd7cP9RxoLjsKc4hEN3IvWIBx1YcJ4JUSLsmC7NVXjF_97vrPK4iZHG0g64nqsfckD9gZarFD9EiFWt0OMZrUiRTmSvSdeSBKT_SnR-iNPcUsX7cGH9VGrXZmeMVn5Q4NUw1GQVv7amfgNYLrLtiqv8ZmXIb-EcR7KsPw-T6tFg';
 // credentials
 var spotifyApi = new SpotifyWebApi({
   clientId: "8f10e0b2700c46fd8f6136f72e3ff3fa",
@@ -31,20 +61,32 @@ spotifyApi.authorizationCodeGrant(authorizationCode)
     console.log('Retrieved token. It expires in ' + Math.floor(tokenExpirationEpoch - new Date().getTime() / 1000) + ' seconds!');
 
     //my code
-    // Get information about current playing song for signed in user
-    spotifyApi.getMyCurrentPlaybackState({
-      })
-      .then(function(data) {
-        // Output items
-        console.log("Now Playing: ",data.body);
-      }, function(err) {
-        console.log('Something went wrong!', err);
-      });
+
     spotifyApi.getMyDevices()
       .then(function(data) {
         console.log('Devices: ', JSON.stringify(data.body));
       }, function(err) {
         console.log("error retrieving devices: "+err);
+      });
+
+      var options = {
+        url: 'https://api.spotify.com/v1/me/player/play',
+        headers: {
+          'Authorization': 'Bearer ' + data.body['access_token'],
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        json: { "uris": chill_2,
+                "offset": random
+              }
+      }; //qs: {'device_id' : 'e3faa83efeb454b2039ba2722cadd343c19f1b97'}
+
+      request.put(options, function(error, response, body) {
+        console.log("we got here");
+        if (error) {
+          return console.error('failed to play: ', error);
+        }
+        console.log('playing song:', body);
       });
 
   }, function(err) {
@@ -68,13 +110,13 @@ spotifyApi.authorizationCodeGrant(authorizationCode)
         .then(function(data) {
           tokenExpirationEpoch = (new Date().getTime() / 1000) + data.body['expires_in'];
           console.log('Refreshed token. It now expires in ' + Math.floor(tokenExpirationEpoch - new Date().getTime() / 1000) + ' seconds!');
-          console.log("refresh token now is: "+JSON.stringify(data.body));
         }, function(err) {
           console.log('Could not refresh the token!', err.message);
         });
     }
   }, 1000); //1000 = 1 second and it is looped
 
+/*
 //The SeiralPort('YOUR_OWN_SERIALPORT_WHERE_HARDWARE_IS_CONNECTED')
 var port = new SerialPort('/dev/cu.usbmodem621', {
   baudRate: 9600
@@ -89,3 +131,13 @@ port.on('data', (data) => {
   console.log(data.toString());
 
 });
+*/
+/* Get information about current playing song for signed in user
+spotifyApi.getMyCurrentPlaybackState({
+  })
+  .then(function(data) {
+    // Output items
+    console.log("Now Playing: ",data.body);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });*/
