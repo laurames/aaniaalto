@@ -51,6 +51,7 @@ spotifyApi.clientCredentialsGrant()
               start += 100;
               end +=100
               callback(null, song_data, count);
+              console.log("number of times fetched "+count);
             }, function(err) {
                 console.log("getAudioFeaturesForTracks error = "+err.message);
             });

@@ -24,7 +24,7 @@ spotifyApi.clientCredentialsGrant()
 
     async.waterfall([
       function(callback) {
-        spotifyApi.getPlaylist('122958629','2t8IYEzOsApu5ljWICjuKw').then(function(data) {
+        spotifyApi.getPlaylist('21thigrtcfmxhtb3yhhsevnci','435sZUqb5VAnl0h3X4FIcv').then(function(data) {
            var total_n_songs = data.body.tracks.total;
            //console.log(data.body.tracks.total);
            console.log("total number of songs in playlist: "+total_n_songs);
@@ -40,7 +40,7 @@ spotifyApi.clientCredentialsGrant()
               function() { return offset < total; },
               function(callback) {
                 count++;
-                spotifyApi.getPlaylistTracks('122958629', '2t8IYEzOsApu5ljWICjuKw', { 'offset' : offset, 'limit' : 100, 'fields' : 'items' })
+                spotifyApi.getPlaylistTracks('21thigrtcfmxhtb3yhhsevnci', '435sZUqb5VAnl0h3X4FIcv', { 'offset' : offset, 'limit' : 100, 'fields' : 'items' })
                   .then(function(data) {
                     //console.log(data.body);
                     console.log("fetched "+count*100+" songs and done "+count+" iterations");
