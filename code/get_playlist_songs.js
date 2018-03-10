@@ -43,7 +43,7 @@ spotifyApi.clientCredentialsGrant()
                 spotifyApi.getPlaylistTracks('122958629', '2t8IYEzOsApu5ljWICjuKw', { 'offset' : offset, 'limit' : 100, 'fields' : 'items' })
                   .then(function(data) {
                     //console.log(data.body);
-                    console.log(count);
+                    console.log("fetched "+count*100+" songs and done "+count+" iterations");
                       data.body.items.map(function(item){
                         song_ids.songs.push({
                           "name" : item.track.name,

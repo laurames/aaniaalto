@@ -5,19 +5,21 @@ Laura Meskanen-Kundu, Maya Pillai & Liam Turner
 var SpotifyWebApi = require("../");
 const request = require('request');
 const SerialPort = require('serialport');
+
+//OAuth Token (fetched with the created authorization_url.js)
+//https://accounts.spotify.com/authorize/?client_id=8f10e0b2700c46fd8f6136f72e3ff3fa&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8888%2Fcallback%2F&scope=user-read-private%20user-modify-playback-state%20user-read-currently-playing%20user-read-playback-state%20user-read-recently-played%20streaming
+var authorizationCode = 'AQChfIA94Si0Rl97VOCi_3rlRLpXHBNuRQrGJ5CD7nQto62TUzgx3E5N6tvxVQO8g2X5ylR_fzvzR6QwDuz_i56lAcVwWAR4xhsAX38yF2sss_T3rITAGgDeZDSZ2ZgqE0o_G16u93QJbezQ048wV8aWMcgPdVgYuYG-S9RJFfqD6hmAVDSD_98dqAmOHTz_GyziVk4XArXv5Htg_-0GZBSmF8pVlOncDWTWKv_CzDGYllVohRZRULx0DHZpOqe9I_q6ol1WBcrsOYL9r59_I80b_wTo7cdOpGbekHBsXvYhMBbJQgpNFaprdep5JE-3mEGrNVxvki2kQaIWISghkKTVHFsLOK28JTnam3Xvv--VbUKpjQtytRPTe7p4BEG9og';
+// credentials
+var spotifyApi = new SpotifyWebApi({
+  clientId: "8f10e0b2700c46fd8f6136f72e3ff3fa",
+  clientSecret: "b5369cb55fe642eeb5ce980441857d3b",
+  redirectUri : 'http://localhost:8888/callback/'
+});
+//
+// When our access token will expire
+var tokenExpirationEpoch;
+
 const data = require('./tuneOut.json');
-
-function sortData(num){
-  var song_ids = [];
-  for(i=0; i<data[num].length; i++){
-    song_ids.push("spotify:track:"+data[num][i]["id"]);
-  }
-  return song_ids;
-};
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 var party_1 = sortData(0),
     party_2 = sortData(1),
@@ -32,26 +34,104 @@ var party_1 = sortData(0),
     chill_3 = sortData(10),
     chill_4 = sortData(11);
 
-var random = { "position": getRandomInt(0,10) };
-console.log(random);
+var playlists = [
+  party_1, party_2, party_3, party_4,
+  middle_1, middle_2, middle_3, middle_4,
+  chill_1, chill_2, chill_3, chill_4
+];
 
-//OAuth Token =
-var authorizationCode = 'AQDrdVw_qZGL8T1RriOju8nL6RuCP4j4UXN-jj1mF0mCvGV-HFXyw2_oc3aSM3F2y4fnYP7adFATjls1MIuvBkAptB1QleDgPhxykqj2_8pGgqenKr4lzTFtIM3appOY8Qu_IlTMjqtPYmHMniHIDuQH3LCqXVZw8xf1n5NMVGKoOkHq4OkpSKzL6f8ky1QfZcjNbnTxCXFIlSKtUxcVdVyDd7cP9RxoLjsKc4hEN3IvWIBx1YcJ4JUSLsmC7NVXjF_97vrPK4iZHG0g64nqsfckD9gZarFD9EiFWt0OMZrUiRTmSvSdeSBKT_SnR-iNPcUsX7cGH9VGrXZmeMVn5Q4NUw1GQVv7amfgNYLrLtiqv8ZmXIb-EcR7KsPw-T6tFg';
-// credentials
-var spotifyApi = new SpotifyWebApi({
-  clientId: "8f10e0b2700c46fd8f6136f72e3ff3fa",
-  clientSecret: "b5369cb55fe642eeb5ce980441857d3b",
-  redirectUri : 'http://localhost:8888/callback/'
-});
-//
-// When our access token will expire
-var tokenExpirationEpoch;
+var playlists_lengths = [
+  party_1.length, party_2.length, party_3.length, party_4.length,
+  middle_1.length, middle_2.length, middle_3.length, middle_4.length,
+  chill_1.length, chill_2.length, chill_3.length, chill_4.length
+];
+
+//sorting for 12 playlist with spotify url requirements:
+function sortData(num){
+  var song_ids = [];
+  for(i=0; i<data[num].length; i++){
+    song_ids.push("spotify:track:"+data[num][i]["id"]);
+  }
+  return song_ids;
+};
+//random offset for playing
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+//sending playlist to spotify
+function getPlaylistSend(buffer, access_token){
+  if(buffer == 00){
+    sendPlaylist(0,playlists_lengths[0], access_token);
+  }
+  else if(buffer == 01){
+    sendPlaylist(1,playlists_lengths[1], access_token);
+  }
+  else if(buffer == 02){
+    sendPlaylist(2,playlists_lengths[2], access_token);
+  }
+  else if(buffer == 03){
+    sendPlaylist(3,playlists_lengths[3], access_token);
+  } //middle playlists
+  else if(buffer == 10){
+    sendPlaylist(4,playlists_lengths[4], access_token);
+  }
+  else if(buffer == 11){
+    sendPlaylist(5,playlists_lengths[5], access_token);
+  }
+  else if(buffer == 12){
+    sendPlaylist(6,playlists_lengths[6], access_token);
+  }
+  else if(buffer == 13){
+    sendPlaylist(7,playlists_lengths[7], access_token);
+  } //chill playlists
+  else if(buffer == 20){
+    sendPlaylist(8,playlists_lengths[8], access_token);
+  }
+  else if(buffer == 21){
+    sendPlaylist(9,playlists_lengths[9], access_token);
+  }
+  else if(buffer == 22){
+    sendPlaylist(10,playlists_lengths[10], access_token);
+  }
+  else if(buffer == 23){
+    sendPlaylist(11,playlists_lengths[11], access_token);
+  }else{
+    console.log("error with finding value for buffer!");
+  }
+};
+
+function sendPlaylist(num, max, access_token){
+  var play_me = {
+    url: 'https://api.spotify.com/v1/me/player/play/?device_id=e3faa83efeb454b2039ba2722cadd343c19f1b97',
+    headers: {
+      'Authorization': 'Bearer ' + access_token,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    json: { "uris": playlists[num],
+            "offset": { "position": getRandomInt(0,max) }
+          }
+  };
+  //request the song to be played from spotify
+  request.put(play_me, function(error, response, body) {
+    if (error) {
+      return console.error('failed to play: ', error);
+    }
+    console.log('playing song from playlist: ' +num);
+  }); //+  ", with songs: " +response.body.uris+ ", from positon: "+response.body.position
+  //and set all to repeat
+  request.put('https://api.spotify.com/v1/me/player/repeat?state=context&device_id=e3faa83efeb454b2039ba2722cadd343c19f1b97', function(error, response, body) {
+    if (error) {
+      return console.error('failed to repeat: ', error);
+    }
+    console.log('repeating songs:');
+  });
+};
 
 // First retrieve an access token (runs only once)
 spotifyApi.authorizationCodeGrant(authorizationCode)
   .then(function(data) {
 //    console.log("access token is: "+data.body['access_token']);
-//    console.log("refresh token is: "+data.body['refresh_token']);
     // Set the access token and refresh token
     spotifyApi.setAccessToken(data.body['access_token']);
     spotifyApi.setRefreshToken(data.body['refresh_token']);
@@ -60,47 +140,46 @@ spotifyApi.authorizationCodeGrant(authorizationCode)
     tokenExpirationEpoch = (new Date().getTime() / 1000) + data.body['expires_in'];
     console.log('Retrieved token. It expires in ' + Math.floor(tokenExpirationEpoch - new Date().getTime() / 1000) + ' seconds!');
 
-    //my code
+    /*listening to box:
+    //The SeiralPort('YOUR_OWN_SERIALPORT_WHERE_HARDWARE_IS_CONNECTED')
+    var port = new SerialPort('/dev/cu.usbmodem621', {
+      baudRate: 9600
+    });
 
-    spotifyApi.getMyDevices()
-      .then(function(data) {
-        console.log('Devices: ', JSON.stringify(data.body));
-      }, function(err) {
-        console.log("error retrieving devices: "+err);
-      });
+    port.on('open', () => {
+      console.log('Port Opened');
+    });
 
-      var options = {
-        url: 'https://api.spotify.com/v1/me/player/play',
-        headers: {
-          'Authorization': 'Bearer ' + data.body['access_token'],
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        json: { "uris": chill_2,
-                "offset": random
-              }
-      }; //qs: {'device_id' : 'e3faa83efeb454b2039ba2722cadd343c19f1b97'}
+    port.on('buffer', (buffer) => {
+      // get a buffer of data from the serial port
+      console.log(buffer.toString());
+      //now do stuff to the data received:
+      getPlaylistSend(buffer.toString(), data.body['access_token']);
+    });*/
 
-      request.put(options, function(error, response, body) {
-        console.log("we got here");
-        if (error) {
-          return console.error('failed to play: ', error);
-        }
-        console.log('playing song:', body);
-      });
+    //testing:
+    var testing_string = [20,00,13,03,23];
+    var goneby = 0;
+    setInterval(function() {
+      getPlaylistSend(testing_string[goneby], data.body['access_token']);
+      if(++goneby > testing_string.length-1){
+        clearInterval(this);
+        console.log("end of text");
+      }
+    }, 10000); //change after 8 seconds
 
   }, function(err) {
     console.log('Something went wrong when retrieving the access token!', err.message);
   });
 
-  // Continually print out the time left until the token expires..
+  // Token expioration time:
   var numberOfTimesUpdated = 0;
 
 //interval that runs forever to update the access token
   setInterval(function() {
     //console.log('Time left: ' + Math.floor((tokenExpirationEpoch - new Date().getTime() / 1000)) + ' seconds left!');
 
-    // OK, we need to refresh the token. Stop printing and refresh.
+    // refresh the token:
     if (++numberOfTimesUpdated > 3550) { //refreshes in about an hour
       numberOfTimesUpdated = 0; //number of times is set back to 0 after about an hour
       //clearInterval(this); only if we want to close the connection
@@ -115,29 +194,3 @@ spotifyApi.authorizationCodeGrant(authorizationCode)
         });
     }
   }, 1000); //1000 = 1 second and it is looped
-
-/*
-//The SeiralPort('YOUR_OWN_SERIALPORT_WHERE_HARDWARE_IS_CONNECTED')
-var port = new SerialPort('/dev/cu.usbmodem621', {
-  baudRate: 9600
-});
-
-port.on('open', () => {
-  console.log('Port Opened');
-});
-
-port.on('data', (data) => {
-  // get a buffer of data from the serial port
-  console.log(data.toString());
-
-});
-*/
-/* Get information about current playing song for signed in user
-spotifyApi.getMyCurrentPlaybackState({
-  })
-  .then(function(data) {
-    // Output items
-    console.log("Now Playing: ",data.body);
-  }, function(err) {
-    console.log('Something went wrong!', err);
-  });*/

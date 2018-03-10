@@ -1,6 +1,0 @@
-{
-  "access_token": "BQBF3KuWX7mMyWob1asqP4qIG4g179M1HQ4fA3-db9LNNLi21KpUm4WWHs6nZ-hKms7Gls1jLNjwkxm7qgj2gFxD_-xv6LYcNY0LDYrPcC3yiLtWtl7jdeCUYSNsnY0wN0Jg9zPqtVlHcqZs2bj5cZ65kbAEh2qY1wgbzg",
-  "token_type": "Bearer",
-  "expires_in": 3600,
-  "scope": "user-modify-playback-state user-read-currently-playing user-read-email user-read-private"
-}
