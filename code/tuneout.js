@@ -8,8 +8,7 @@ const SerialPort = require('serialport');
 
 //OAuth Token (fetched with the created authorization_url.js)
 //https://accounts.spotify.com/authorize/?client_id=8f10e0b2700c46fd8f6136f72e3ff3fa&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8888%2Fcallback%2F&scope=user-read-private%20user-modify-playback-state%20user-read-currently-playing%20user-read-playback-state%20user-read-recently-played%20streaming
-var authorizationCode = 'AQDLkB7kIbdBRC_fCA8eGNMgL93EiDl1nujONjlhTqz61OKmvY54f9qOc7rFQOi6PT55g9UwH_fY010CSCyTgWXP1Ri_CkeYAhxl90LXi1-w0KsdJ2stQ8q36MnPg0gcWMvVfc92J-CfNXXUcmI-d1TBd0C38N4br865-KImYVk4q2hOsl2EU9tfmGdoAhvujmgsC9tf6BU-ZwETstZaI7EaadWlIYnJQgyH3lFftq5GwXuGY2GlFCP6K7z1Et4SP54nFcohlQf49lZaw_uWyexWR2uXmWyjshBF1hLfgqoc0pe63rn9GZF8Bb9se4k79GQdVbnxGMOwnN91rrGysvIEn0PdJqnKkfxUBzXTExPkA--V0tSEwd-9tVh0kBz9uQ';
-// credentials
+var authorizationCode = 'AQBri-fC8oVrFCcu0JxXc7sNeJDz2Kg6YvPuBB41Di47hQO2yDPih2CNvl7HynX7flWpZwfBm1wX4SCAGmH837kUfIngJkljWdmuV1IRlNg8WnLcEY9mlMAjvynXKqKOtdCxB7z3tS7B1uM-OqWoC8IdpULEHnAutH4yrO7Q2GCXnrlX_NpunVy2hNVyQsbni0k0dRGgKFE7X8bZCb07dlE3WTkzyml7w--YnmFD79ZcT9n3mhLm5TP3JbzEQ-R_GOnC-tB1vI38Aa1I2-hYy0dM3hZn_cHOnGagAEBhtq-SZAfrkzSb3MHcTOH97ymqPRirlskYOnnEWyA_R75ftkAa1vKOlQ6BT7jTd_6tzHlrSGjf3S-cigIh_rFqI3dwtg'
 var spotifyApi = new SpotifyWebApi({
   clientId: "8f10e0b2700c46fd8f6136f72e3ff3fa",
   clientSecret: "b5369cb55fe642eeb5ce980441857d3b",
@@ -48,7 +47,7 @@ var playlists_lengths = [
 
 //The SeiralPort('YOUR_OWN_SERIALPORT_WHERE_HARDWARE_IS_CONNECTED')
 var port = new SerialPort('/dev/cu.usbmodem621', {
-  baudRate: 9600
+  baudRate: 57600
 });
 
 //sorting for 12 playlist with spotify url requirements:
@@ -63,6 +62,8 @@ function sortData(num){
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+var nowPlaying;
 //sending playlist to spotify
 function getPlaylistSend(buffer, access_token){
   if(buffer == 0){
@@ -101,8 +102,11 @@ function getPlaylistSend(buffer, access_token){
   if(buffer == 23){
     sendPlaylist(11,playlists_lengths[11], access_token);
   }else{
+
     console.log("error with finding value for buffer!");
   }
+  nowPlaying = buffer;
+  console.log("nowPlaying: " + buffer);
 };
 
 function sendPlaylist(num, max, access_token){
@@ -190,17 +194,25 @@ spotifyApi.authorizationCodeGrant(authorizationCode)
 var num_buffer = null;
 var count_buffer = 0;
 
+
   port.on('data', (data) => {
     /*if(count_buffer > 3){
       num_buffer = data.toString();
       count_buffer = 0;
     }*/
-    count_buffer++;
+    //count_buffer++;
     // get a buffer of data from the serial port
     //console.log("token is: "+JSON.stringify(spotifyApi['_credentials'].accessToken));
-    console.log(data.toString());
+    console.log('data.toString(): ' + data.toString());
     //if(num_buffer != data.toString()){
       //now do stuff to the data received:
-      getPlaylistSend(data.toString(), spotifyApi['_credentials'].accessToken);
+
+    if(data.toString()) {
+      if(data.toString() != nowPlaying){
+        getPlaylistSend(data.toString(), spotifyApi['_credentials'].accessToken);
+        console.log('sent');
+      }
+    }
+
     //}
   });
